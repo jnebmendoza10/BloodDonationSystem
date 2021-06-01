@@ -15,8 +15,8 @@ namespace BloodDonationSystemWebAPI.Controllers
         private string connectionString = ConfigurationManager.ConnectionStrings["BloodDonation"].ConnectionString;
         public int Post([FromBody]DonorModel donor)
         {
-            //try
-            //{
+            try
+            {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand("spRegisterDonor", connection))
                 {
@@ -39,12 +39,12 @@ namespace BloodDonationSystemWebAPI.Controllers
 
                 }
                 
-            //}
-            //catch
-            //{
-            //    return -1;
+            }
+            catch
+            {
+               return -1;
                 
-            //}
+            }
         }
     }
 }

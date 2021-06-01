@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BloodDonationApp.Views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="20"
+                     Margin="25">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="https://pics.freeicons.io/uploads/icons/png/6558026631557749476-512.png"
+                       HeightRequest="55"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center">
+                </Image>
+                <Label Grid.Column="1"
+                       TextColor="#CE0B06"
+                       Text="Donor Login"
+                       FontSize="Large"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       HorizontalOptions="Center" />
+            </Grid>
+            <Frame HasShadow="True"
+                   Padding="25"
+                   Margin="0,80,0,50">
+                <StackLayout Margin="0,60,0,60">
+                    <Label Text="Sign In"
+                           FontAttributes="Bold"
+                           FontSize="Title"
+                           HorizontalTextAlignment="Center"
+                           TextColor="#CE0B06" />
+                    <Entry Placeholder="Email"
+                           PlaceholderColor="#000000"
+                           TextColor="#000000"
+                           x:Name="EntEmail"
+                           Keyboard="Email" />
+                    <Entry Placeholder="Password"
+                           PlaceholderColor="#000000"
+                           TextColor="#000000"
+                           IsPassword="True"
+                           x:Name="EntPassword"
+                           Keyboard="Default" />
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button Text="Login"
+                    BackgroundColor="#CE0B06"
+                    CornerRadius="25"                    
+                    TextColor="White"
+                    x:Name="BtnLogin"
+                    Clicked="BtnLogin_Clicked"/>
+                <Button Text="Register"
+                        BackgroundColor="#CE0B06"
+                        CornerRadius="25"                    
+                        TextColor="White"
+                        x:Name="BtnRegister"
+                        Clicked="BtnRegister_Clicked"/>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
