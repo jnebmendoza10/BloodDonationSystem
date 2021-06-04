@@ -53,11 +53,11 @@
 
 
             <Entry x:Name="txtPassword" Placeholder="Password"  PlaceholderColor="#000000"
-                           TextColor="#000000"/>
+                           TextColor="#000000" IsPassword="True"/>
 
 
             <Entry x:Name="txtConfirm" Placeholder="Confirm Password"  PlaceholderColor="#000000"
-                           TextColor="#000000"/>
+                           TextColor="#000000" IsPassword="True"/>
 
             <Button x:Name="btnSubmitDonor" Text="Submit" Clicked="BtnSubmitDonor_Clicked"  BackgroundColor="#CE0B06"
                         CornerRadius="25"                    
