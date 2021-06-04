@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BloodDonationApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,22 @@ namespace BloodDonationApp.Views
 
         private async void BtnLogin_Clicked(object sender, EventArgs e)
         {
-
+            if (NetworkStatus.IsConnected())
+            {
+                int result = await ApiServices.LoginDonor(EntEmail.Text, EntPassword.Text);
+                if(result > 0)
+                {
+                     Application.Current.MainPage = new HomePage(result);
+                }
+                else if (result == -69)
+                {
+                    await DisplayAlert("Failed", "Invalid username or password", "Ok");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Warning", "There is no internet connection", "Cancel");
+            }
         }
 
         private async void BtnRegister_Clicked(object sender, EventArgs e)

@@ -14,8 +14,8 @@ namespace BloodDonationSystemWebAPI.Controllers
     public class LocationController : ApiController
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["BloodDonation"].ConnectionString;
-
-        public IEnumerable<Location> Get()
+        [HttpGet]
+        public IEnumerable<Location> GetLocations()
         {
             List<Location> locations = new List<Location>();
             try

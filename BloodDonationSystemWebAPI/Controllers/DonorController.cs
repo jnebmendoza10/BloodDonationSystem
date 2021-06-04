@@ -13,7 +13,8 @@ namespace BloodDonationSystemWebAPI.Controllers
     public class DonorController : ApiController
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["BloodDonation"].ConnectionString;
-        public int Post([FromBody]DonorModel donor)
+        [HttpPost]
+        public int RegisterDonor([FromBody]DonorModel donor)
         {
             try
             {
@@ -34,7 +35,7 @@ namespace BloodDonationSystemWebAPI.Controllers
 
                     connection.Open();
 
-                    return (int)cmd.ExecuteNonQuery();
+                    return (int)cmd.ExecuteScalar();
 
 
                 }
@@ -44,6 +45,72 @@ namespace BloodDonationSystemWebAPI.Controllers
             {
                return -1;
                 
+            }
+        }
+
+        public int LoginDonor([FromBody] DonorModel donor)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand("spLoginDonor", connection))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                   
+
+                    cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = donor.Email;
+                    cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = donor.Password;
+
+                    connection.Open();
+
+                    return (int)cmd.ExecuteScalar();
+
+                }
+
+            }
+            catch
+            {
+                return -1;
+
+            }
+        }
+        [HttpGet]
+        public DonorModel GetDonorDetail(int id)
+        {
+            DonorModel donor = new DonorModel();
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlCommand cmd = new SqlCommand("spGetDonorById", connection))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    connection.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+          
+
+                        donor.FirstName = reader["FirstName"].ToString();
+                        donor.LastName = reader["LastName"].ToString();
+                        donor.DateOfBirth = DateTime.Parse(reader["DateOfBirth"].ToString());
+                        donor.Address = reader["Address"].ToString();
+                        donor.ContactNumber = reader["ContactNumber"].ToString();
+                        donor.BloodGroup = reader["BloodGroup"].ToString();
+                        donor.Email = reader["Email"].ToString();
+                        donor.Password = reader["Password"].ToString();
+                        
+                    }
+
+                }
+                return donor;
+            }
+            catch
+            {
+
+                return null;
             }
         }
     }

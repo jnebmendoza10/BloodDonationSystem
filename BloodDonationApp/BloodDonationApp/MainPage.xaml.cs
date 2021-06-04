@@ -16,6 +16,7 @@ namespace BloodDonationApp
         public MainPage()
         {
             InitializeComponent();
+            
         }
     }
 }

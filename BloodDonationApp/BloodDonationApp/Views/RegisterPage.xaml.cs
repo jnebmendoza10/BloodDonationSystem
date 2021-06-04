@@ -29,9 +29,13 @@ namespace BloodDonationApp.Views
                 else
                 {
                     var response = await ApiServices.RegisterDonor(txtFirstNameDonor.Text, txtLastNameDonor.Text, DatePicker_Donor.Date, txtAddressDonor.Text, txtContactDonor.Text, BloodTypes.SelectedItem.ToString(), txtEmail.Text, txtPassword.Text);
-                    if (response)
+                    if (response == 1)
                     {
                         await DisplayAlert("Success", "Your account has been created", "Ok");
+                    }
+                    else if (response == -69)
+                    {
+                        await DisplayAlert("Failed", "Email already exists", "Ok");
                     }
                     else
                     {
