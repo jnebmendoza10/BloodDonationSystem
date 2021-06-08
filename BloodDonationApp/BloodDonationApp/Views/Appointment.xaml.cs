@@ -1,4 +1,5 @@
 ﻿using BloodDonationApp.Models;
+using BloodDonationApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +21,8 @@ namespace BloodDonationApp.Views
         {
             InitializeComponent();
             this.userId = userId;
+            appointments = new ObservableCollection<AppointmentModel>();
+            GetAppointments();
         }
 
         public Appointment (AppointmentModel appointment)
@@ -29,6 +32,17 @@ namespace BloodDonationApp.Views
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new DonationPage(userId));
+        }
+
+        public async void GetAppointments()
+        {
+            var appointmentList = await ApiServices.GetAppointments();
+            foreach (var appointment in appointmentList)
+            {
+                appointments.Add(appointment);
+            }
+            AppointmentListView.ItemsSource = appointments;
+
         }
     }
 }

@@ -4,13 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="BloodDonationApp.Views.DonationPage">
+             x:Class="BloodDonationApp.Views.UpdateDeleteAppointmentPage">
     <ContentPage.Content>
         <Frame HasShadow="True"
                    Padding="25"
                    Margin="0,150,0,60">
             <StackLayout Margin="20">
-                <Label Text="Add an appointment"
+                <Label Text="Update an appointment"
                            FontAttributes="Bold"
                            FontSize="Title"
                            HorizontalTextAlignment="Center"
@@ -19,7 +19,7 @@
                 <DatePicker x:Name="DatePicker_DonorDonation"/>
                 <Picker x:Name="Locations" Title="Select a Blood Bank" TitleColor="#000000" TextColor="#000000">
                     <Picker.Items>
-                        
+
                     </Picker.Items>
                 </Picker>
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
@@ -27,17 +27,16 @@
                     BackgroundColor="#CE0B06"
                     CornerRadius="25"                    
                     TextColor="White"
-                    x:Name="BtnSubmitAppointment"
-                    Clicked="BtnSubmitAppointment_Clicked"/>
+                    x:Name="BtnSubmitEditedAppointment"
+                    Clicked="BtnSubmitEditedAppointment_Clicked"/>
                     <Button Text="Cancel"
                         BackgroundColor="#CE0B06"
                         CornerRadius="25"                    
                         TextColor="White"
-                        x:Name="BtnCancelAppointment"
-                        Clicked="BtnCancelAppointment_Clicked"/>
+                        x:Name="BtnDeleteAppointment"
+                        Clicked="BtnDeleteAppointment_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </Frame>
-        
     </ContentPage.Content>
 </ContentPage>

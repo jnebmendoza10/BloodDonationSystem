@@ -1,4 +1,5 @@
 ﻿using BloodDonationApp.Models;
+using BloodDonationApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,10 +18,14 @@ namespace BloodDonationApp.Views
         
         
         private int userId;
+        private ObservableCollection<LocationModel> LocationCollection;
         public DonationPage(int userId)
         {
             InitializeComponent();
             this.userId = userId;
+            LocationCollection = new ObservableCollection<LocationModel>();
+            GetLocations();
+
         }
 
         private async void BtnSubmitAppointment_Clicked(object sender, EventArgs e)
@@ -28,16 +33,39 @@ namespace BloodDonationApp.Views
             AppointmentModel appointment = new AppointmentModel()
             {
                 DonorId = userId,
-                LocationId = 1,
+                Location = Locations.SelectedItem.ToString(),
                 AppointmentDate = DatePicker_DonorDonation.Date
 
             };
+
+            var response = await ApiServices.AddAppointment(userId, Locations.SelectedItem.ToString(), DatePicker_DonorDonation.Date);
+
+            if (response)
+            {
+                await DisplayAlert("Success", "Your appointment has been set", "Ok");
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                await DisplayAlert("Error", "Please try again", "Ok");
+            }
            
             
         }
 
-        private void BtnCancelAppointment_Clicked(object sender, EventArgs e)
+        private async void BtnCancelAppointment_Clicked(object sender, EventArgs e)
         {
+            await Navigation.PopAsync();
+        }
+
+        public async void GetLocations()
+        {
+            var locations = await ApiServices.GetLocations();
+            foreach (var location in locations)
+            {
+                LocationCollection.Add(location);
+            }
+            Locations.ItemsSource = LocationCollection;
 
         }
     }

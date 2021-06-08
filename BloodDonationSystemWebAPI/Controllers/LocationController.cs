@@ -33,9 +33,9 @@ namespace BloodDonationSystemWebAPI.Controllers
                         Location location = new Location();
                         //blood.BloodId = Convert.ToInt32(reader["BloodId"]);
                         //blood.BloodType = reader["BloodType"].ToString();
-                        location.LocationId = Convert.ToInt32(reader["LocationId"]);
+                       
                         location.BloodBankName = reader["BloodBankName"].ToString();
-                        location.LocationName = reader["LocationName"].ToString();
+                       
 
                         locations.Add(location);
                     }
