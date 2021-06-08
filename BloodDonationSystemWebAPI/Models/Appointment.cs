@@ -9,7 +9,7 @@ namespace BloodDonationSystemWebAPI.Models
     {
         public int AppointmentId { get; set; }
         public int DonorId { get; set; }
-        public int LocationId { get; set; }
+        public string Location { get; set; }
         public DateTime AppointmentDate { get; set; }
     }
 }
