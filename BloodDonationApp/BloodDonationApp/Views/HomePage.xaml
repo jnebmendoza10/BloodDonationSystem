@@ -7,8 +7,10 @@
              x:Class="BloodDonationApp.Views.HomePage"
             xmlns:local="clr-namespace:BloodDonationApp.Views"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
-            NavigationPage.HasNavigationBar="False"
+            NavigationPage.HasNavigationBar="True"
             BarBackgroundColor="Red"
+            SelectedTabColor="White"
+            UnselectedTabColor="Gray"
             >
   <!--Pages can be added as references or inline-->
 

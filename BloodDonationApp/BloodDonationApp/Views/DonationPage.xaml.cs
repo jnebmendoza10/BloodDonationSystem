@@ -10,18 +10,21 @@ using Xamarin.Forms.Xaml;
 namespace BloodDonationApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Appointment : ContentPage
+    public partial class DonationPage : ContentPage
     {
-        private int userId;
-        public Appointment(int userId)
+        public DonationPage()
         {
             InitializeComponent();
-            this.userId = userId;
         }
 
-        private async void ToolbarItem_Clicked(object sender, EventArgs e)
+        private void BtnSubmitAppointment_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DonationPage());
+
+        }
+
+        private void BtnCancelAppointment_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

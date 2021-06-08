@@ -22,7 +22,7 @@
             <Entry x:Name="txtLastNameDonor" Placeholder="Last Name"  PlaceholderColor="#000000"
                            TextColor="#000000"/>
 
-            <Label x:Name="lblDatePickerDonor" Text="Date of Birth" TextColor="#000000" FontSize="Large"/>
+            <Label x:Name="lblDatePickerDonor" Text="Date of Birth" TextColor="#000000"/>
             <DatePicker x:Name="DatePicker_Donor"/>
 
 
@@ -34,7 +34,7 @@
                            TextColor="#000000"/>
 
 
-            <Picker x:Name="BloodTypes" Title="Select a Blood Type:" TitleColor="#000000" TextColor="#000000" FontSize="Large">
+            <Picker x:Name="BloodTypes" Title="Select a Blood Type:" TitleColor="#000000" TextColor="#000000">
                 <Picker.Items>
                     <x:String>A-</x:String>
                     <x:String>A+</x:String>

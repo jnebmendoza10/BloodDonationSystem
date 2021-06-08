@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BloodDonationApp.Views.DonationPage">
+    <ContentPage.Content>
+        <Frame HasShadow="True"
+                   Padding="25"
+                   Margin="0,150,0,60">
+            <StackLayout Margin="20">
+                <Label x:Name="lblDatePickerDonor" Text="Set an appointment date" TextColor="#000000"/>
+                <DatePicker x:Name="DatePicker_DonorDonation"/>
+                <Picker x:Name="Locations" Title="Select a Blood Bank" TitleColor="#000000" TextColor="#000000">
+                    <Picker.Items>
+                        <x:String>A-</x:String>
+                        <x:String>A+</x:String>
+                        <x:String>B-</x:String>
+                        <x:String>B+</x:String>
+                        <x:String>AB-</x:String>
+                        <x:String>AB+</x:String>
+                        <x:String>O-</x:String>
+                        <x:String>O+</x:String>
+                    </Picker.Items>
+                </Picker>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Button Text="Submit"
+                    BackgroundColor="#CE0B06"
+                    CornerRadius="25"                    
+                    TextColor="White"
+                    x:Name="BtnSubmitAppointment"
+                    Clicked="BtnSubmitAppointment_Clicked"/>
+                    <Button Text="Cancel"
+                        BackgroundColor="#CE0B06"
+                        CornerRadius="25"                    
+                        TextColor="White"
+                        x:Name="BtnCancelAppointment"
+                        Clicked="BtnCancelAppointment_Clicked"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+        
+    </ContentPage.Content>
+</ContentPage>

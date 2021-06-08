@@ -17,6 +17,7 @@ namespace BloodDonationApp.Views
         {
             InitializeComponent();
             this.userId = userId;
+            
         }
 
         private void BtnUpdate_Clicked(object sender, EventArgs e)
