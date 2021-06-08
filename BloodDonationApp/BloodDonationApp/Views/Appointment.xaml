@@ -18,8 +18,8 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical">
-                                <Label Text="Date"/>
-                                <Label Text="Time"/>
+                                <Label Text="Location" x:Name="lblLocation"/>
+                                <Label Text="AppoinmentDate" x:Name="lblAppointmentDate"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

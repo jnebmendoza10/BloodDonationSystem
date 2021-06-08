@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BloodDonationApp.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ namespace BloodDonationApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Appointment : ContentPage
     {
+        ObservableCollection<AppointmentModel> appointments;
         private int userId;
         public Appointment(int userId)
         {
@@ -19,9 +22,13 @@ namespace BloodDonationApp.Views
             this.userId = userId;
         }
 
+        public Appointment (AppointmentModel appointment)
+        {
+            AppointmentListView.ItemsSource = appointments;
+        }
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new DonationPage());
+            await Navigation.PushAsync(new DonationPage(userId));
         }
     }
 }
