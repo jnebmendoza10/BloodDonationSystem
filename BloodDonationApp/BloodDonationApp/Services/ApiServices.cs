@@ -84,5 +84,33 @@ namespace BloodDonationApp.Services
 
            
         }
+
+        public static async Task<List<AppointmentModel>> GetAppointments()
+        {
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync(Constant.ApiUrl + "api/Appointment/GetAppointments");
+
+            var appointments = JsonConvert.DeserializeObject<List<AppointmentModel>>(json);
+
+            return appointments;
+        }
+
+        public static async Task PutAppointmentAsync(AppointmentModel appointment)
+        {
+            var httpClient = new HttpClient();
+
+            var json = JsonConvert.SerializeObject(appointment);
+            HttpContent content = new StringContent(json);
+
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+
+            var response = await httpClient.PutAsync(Constant.ApiUrl + "Appointment/UpdateAppointment/" + appointment.AppointmentId, content);
+        }
+
+        public static async Task DeleteAppointmentAsync(int userId)
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.DeleteAsync(Constant.ApiUrl + "Appointment/DeleteAppointment/" + userId);
+        }
     }
 }
