@@ -6,26 +6,36 @@
              mc:Ignorable="d"
              x:Class="BloodDonationApp.Views.Appointment">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="ToolbarItem_Clicked"/>
-    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
-        <Frame>
-            <ListView x:Name="AppointmentListView"
+        <StackLayout Orientation="Vertical" Spacing="20" Margin="25">
+            <Frame>
+                <ListView x:Name="AppointmentListView"
                     Margin="20"
                     SelectionMode="Single">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Vertical">
-                                <Label Text="Location" x:Name="lblLocation"/>
-                                <Label Text="AppoinmentDate" x:Name="lblAppointmentDate"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Frame>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="Location" x:Name="lblLocation"/>
+                                    <Label Text="AppoinmentDate" x:Name="lblAppointmentDate"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+
+            <Button Text="Add"
+                    BackgroundColor="#CE0B06"
+                    CornerRadius="25"                    
+                    TextColor="White"
+                    x:Name="BtnAddAppointment"
+                    Clicked="BtnAddAppointment_Clicked"/>
+        </StackLayout>
+
+        
+      
     </ContentPage.Content>
    
    

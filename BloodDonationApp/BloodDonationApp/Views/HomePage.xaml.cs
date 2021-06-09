@@ -14,13 +14,23 @@ namespace BloodDonationApp.Views
     public partial class HomePage : Xamarin.Forms.TabbedPage
     {
         private int userId;
+        public HomePage()
+        {
+            InitializeComponent();
+            On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+            CurrentPage = Children[2];
+
+            
+        }
+
         public HomePage(int userId)
         {
             InitializeComponent();
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
             this.userId = userId;
-            CurrentPage = new Profile(this.userId);
-            Children[2] = new Appointment(this.userId);
+            CurrentPage = Children[2];
+            Profile profile = new Profile(this.userId);
+            Appointment appointment = new Appointment(this.userId);
         }
     }
 }

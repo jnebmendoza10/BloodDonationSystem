@@ -13,21 +13,29 @@ namespace BloodDonationApp.Views
     public partial class Profile : ContentPage
     {
         private int userId;
-        public Profile(int userId)
+        public Profile()
         {
             InitializeComponent();
-            this.userId = userId;
+            
             
         }
-
+        public Profile (int userId)
+        {
+            this.userId = userId;
+        }
         private void BtnUpdate_Clicked(object sender, EventArgs e)
         {
 
         }
 
-        private void BtnSignOut_Clicked(object sender, EventArgs e)
+        private async void BtnSignOut_Clicked(object sender, EventArgs e)
         {
-
+            var action = await DisplayAlert("Notice", "Do you want to sign out?", "Yes", "No");
+            if (action)
+            {
+                Application.Current.MainPage = new LoginPage();
+            }
+            
         }
 
         

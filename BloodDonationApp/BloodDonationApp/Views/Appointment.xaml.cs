@@ -17,23 +17,21 @@ namespace BloodDonationApp.Views
     {
         ObservableCollection<AppointmentModel> appointments;
         private int userId;
-        public Appointment(int userId)
+        public Appointment()
         {
             InitializeComponent();
-            this.userId = userId;
             appointments = new ObservableCollection<AppointmentModel>();
             GetAppointments();
         }
-
+        public Appointment (int userId)
+        {
+            this.userId = userId;
+        }
         public Appointment (AppointmentModel appointment)
         {
             AppointmentListView.ItemsSource = appointments;
         }
-        private async void ToolbarItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new DonationPage(userId));
-        }
-
+       
         public async void GetAppointments()
         {
             var appointmentList = await ApiServices.GetAppointments();
@@ -43,6 +41,11 @@ namespace BloodDonationApp.Views
             }
             AppointmentListView.ItemsSource = appointments;
 
+        }
+
+        private void BtnAddAppointment_Clicked(object sender, EventArgs e)
+        {
+            Application.Current.MainPage = new DonationPage(this.userId);
         }
     }
 }

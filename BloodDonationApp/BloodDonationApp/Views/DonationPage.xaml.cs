@@ -53,9 +53,9 @@ namespace BloodDonationApp.Views
             
         }
 
-        private async void BtnCancelAppointment_Clicked(object sender, EventArgs e)
+        private void BtnCancelAppointment_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            Application.Current.MainPage = new HomePage();
         }
 
         public async void GetLocations()

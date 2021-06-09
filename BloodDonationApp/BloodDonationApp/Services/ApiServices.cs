@@ -33,7 +33,7 @@ namespace BloodDonationApp.Services
             var resultObject = JsonConvert.DeserializeObject(resultJson);
             if (response.IsSuccessStatusCode)
             {
-                return (int)resultObject;
+                return int.Parse(resultObject.ToString());
             }
             else
             {
@@ -58,7 +58,7 @@ namespace BloodDonationApp.Services
 
             if (response.IsSuccessStatusCode)
             {
-                return (int)resultObject;
+                return int.Parse(resultObject.ToString());
             }
             else
             {
