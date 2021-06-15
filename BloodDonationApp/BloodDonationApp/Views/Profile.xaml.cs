@@ -1,9 +1,10 @@
-﻿using System;
+﻿using BloodDonationApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,17 +13,15 @@ namespace BloodDonationApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Profile : ContentPage
     {
-        private int userId;
+        string donorId = Preferences.Get("donorId", string.Empty);
+      
         public Profile()
         {
             InitializeComponent();
-            
+            GetDonorById(int.Parse(donorId));
             
         }
-        public Profile (int userId)
-        {
-            this.userId = userId;
-        }
+       
         private void BtnUpdate_Clicked(object sender, EventArgs e)
         {
 
@@ -38,6 +37,17 @@ namespace BloodDonationApp.Views
             
         }
 
+        public async void GetDonorById(int id)
+        {
+            var donor = await ApiServices.GetDonorCredentials(id);
+            txtFirstNameDonor.Text = donor.FirstName;
+            txtLastNameDonor.Text = donor.LastName;
+            DatePicker_Donor.Date = donor.DateOfBirth;
+            txtAddressDonor.Text = donor.Address;
+            txtContactDonor.Text = donor.ContactNumber;
+            BloodTypes.SelectedItem = donor.BloodGroup;
+            txtEmail.Text = donor.Email;
+        }
         
     }
 }

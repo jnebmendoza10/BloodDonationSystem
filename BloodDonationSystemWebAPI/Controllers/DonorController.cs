@@ -85,7 +85,7 @@ namespace BloodDonationSystemWebAPI.Controllers
                 using (SqlCommand cmd = new SqlCommand("spGetDonorById", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
+                    cmd.Parameters.Add("@userId", SqlDbType.Int).Value = id;
 
                     connection.Open();
                     SqlDataReader reader = cmd.ExecuteReader();

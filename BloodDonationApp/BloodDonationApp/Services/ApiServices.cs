@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
-
+using Xamarin.Essentials;
 
 namespace BloodDonationApp.Services
 {
@@ -31,6 +31,7 @@ namespace BloodDonationApp.Services
             var response = await httpClient.PostAsync(Constant.ApiUrl + "api/Donor/RegisterDonor", content);
             var resultJson = response.Content.ReadAsStringAsync().Result;
             var resultObject = JsonConvert.DeserializeObject(resultJson);
+            
             if (response.IsSuccessStatusCode)
             {
                 return int.Parse(resultObject.ToString());
@@ -69,19 +70,14 @@ namespace BloodDonationApp.Services
         public static async Task<DonorModel> GetDonorCredentials (int userId)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(Constant.ApiUrl + "api/Donor/GetDonorDetail" + userId);
+            //var response = await httpClient.GetAsync(Constant.ApiUrl + "api/Donor/GetDonorDetail" + userId);
 
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonData = await response.Content.ReadAsStringAsync();
+           
+                var jsonData = await httpClient.GetStringAsync(Constant.ApiUrl + "api/Donor/GetDonorDetail/" + userId);
                 var donor = JsonConvert.DeserializeObject<DonorModel>(jsonData);
+         
                 return donor;
-            }
-            else
-            {
-                return null;
-            }
-
+            
            
         }
 

@@ -18,12 +18,12 @@ namespace BloodDonationApp.Views
         
         
         private int userId;
-        private ObservableCollection<LocationModel> LocationCollection;
+        private ObservableCollection<string> LocationCollection;
         public DonationPage(int userId)
         {
             InitializeComponent();
             this.userId = userId;
-            LocationCollection = new ObservableCollection<LocationModel>();
+            LocationCollection = new ObservableCollection<string>();
             GetLocations();
 
         }
@@ -43,7 +43,7 @@ namespace BloodDonationApp.Views
             if (response)
             {
                 await DisplayAlert("Success", "Your appointment has been set", "Ok");
-                await Navigation.PopAsync();
+               
             }
             else
             {
@@ -63,7 +63,7 @@ namespace BloodDonationApp.Views
             var locations = await ApiServices.GetLocations();
             foreach (var location in locations)
             {
-                LocationCollection.Add(location);
+                LocationCollection.Add(location.BloodBankName);
             }
             Locations.ItemsSource = LocationCollection;
 

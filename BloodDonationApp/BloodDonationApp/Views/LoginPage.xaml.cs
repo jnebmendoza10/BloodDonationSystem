@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,7 +25,8 @@ namespace BloodDonationApp.Views
                 int result = await ApiServices.LoginDonor(EntEmail.Text, EntPassword.Text);
                 if(result > 0)
                 {
-                     Application.Current.MainPage = new HomePage(result);
+                    Preferences.Set("donorId", result.ToString());
+                     Application.Current.MainPage = new HomePage();
                 }
                 else if (result == -69)
                 {

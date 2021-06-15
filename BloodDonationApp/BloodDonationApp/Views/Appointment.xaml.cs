@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,17 +16,15 @@ namespace BloodDonationApp.Views
     public partial class Appointment : ContentPage
     {
         ObservableCollection<AppointmentModel> appointments;
-        private int userId;
+        string donorId = Preferences.Get("donorId", string.Empty);
+
         public Appointment()
         {
             InitializeComponent();
             appointments = new ObservableCollection<AppointmentModel>();
             GetAppointments();
         }
-        public Appointment (int userId)
-        {
-            this.userId = userId;
-        }
+        
         public Appointment (AppointmentModel appointment)
         {
             AppointmentListView.ItemsSource = appointments;
@@ -45,7 +43,7 @@ namespace BloodDonationApp.Views
 
         private void BtnAddAppointment_Clicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new DonationPage(this.userId);
+            Application.Current.MainPage = new DonationPage(int.Parse(donorId));
         }
     }
 }
