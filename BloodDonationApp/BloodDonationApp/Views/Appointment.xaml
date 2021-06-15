@@ -4,38 +4,40 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="BloodDonationApp.Views.Appointment">
+             x:Class="BloodDonationApp.Views.Appointment"
+             NavigationPage.HasNavigationBar="True">
 
     
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" Spacing="20" Margin="25">
-            <Frame>
+       
+            <StackLayout Orientation="Vertical" Spacing="20" Margin="25">
+
                 <ListView x:Name="AppointmentListView"
-                    Margin="20"
+                    Margin="5"
                     SelectionMode="Single">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Location" x:Name="lblLocation"/>
-                                    <Label Text="AppoinmentDate" x:Name="lblAppointmentDate"/>
+                                <StackLayout Orientation="Vertical" >
+                                    <Label Text="{Binding Location}" x:Name="lblLocation" FontSize="10" TextColor="Black" FontAttributes="Bold" />
+                                    <Label Text="{Binding AppointmentDate}" x:Name="lblAppointmentDate"  TextColor="Black" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </Frame>
-
-            <Button Text="Add"
+                
+                    <Button Text="Add"
                     BackgroundColor="#CE0B06"
                     CornerRadius="25"                    
                     TextColor="White"
                     x:Name="BtnAddAppointment"
                     Clicked="BtnAddAppointment_Clicked"/>
-        </StackLayout>
+               
+            </StackLayout>
 
-        
-      
+       
+
     </ContentPage.Content>
    
    

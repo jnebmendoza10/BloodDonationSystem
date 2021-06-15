@@ -17,27 +17,26 @@ namespace BloodDonationApp.Views
     {
         ObservableCollection<AppointmentModel> appointments;
         string donorId = Preferences.Get("donorId", string.Empty);
-
+        
         public Appointment()
         {
             InitializeComponent();
             appointments = new ObservableCollection<AppointmentModel>();
             GetAppointments();
+            this.BindingContext = this;
         }
         
-        public Appointment (AppointmentModel appointment)
-        {
-            AppointmentListView.ItemsSource = appointments;
-        }
+       
        
         public async void GetAppointments()
         {
             var appointmentList = await ApiServices.GetAppointments();
             foreach (var appointment in appointmentList)
             {
-                appointments.Add(appointment);
+                appointments.Add(new AppointmentModel { Location = appointment.Location, AppointmentDate = appointment.AppointmentDate.Date });
             }
             AppointmentListView.ItemsSource = appointments;
+            
 
         }
 
