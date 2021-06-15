@@ -38,7 +38,7 @@ namespace BloodDonationApp.Views
 
             };
 
-            var response = await ApiServices.AddAppointment(userId, Locations.SelectedItem.ToString(), DatePicker_DonorDonation.Date);
+            var response = await ApiServices.AddAppointment(userId, Locations.SelectedItem.ToString(), DatePicker_DonorDonation.Date + TimePicker_Donation.Time);
 
             if (response)
             {

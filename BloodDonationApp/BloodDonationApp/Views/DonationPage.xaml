@@ -17,6 +17,8 @@
                            TextColor="#CE0B06" />
                 <Label x:Name="lblDatePickerDonor" Text="Set an appointment date" TextColor="#000000"/>
                 <DatePicker x:Name="DatePicker_DonorDonation"/>
+                <Label x:Name="lblTimePickerDonor" Text="Set appointment time" TextColor="#000000"/>
+                <TimePicker x:Name="TimePicker_Donation"/>
                 <Picker x:Name="Locations" Title="Select a Blood Bank" TitleColor="#000000" TextColor="#000000">
                     <Picker.Items>
                         
