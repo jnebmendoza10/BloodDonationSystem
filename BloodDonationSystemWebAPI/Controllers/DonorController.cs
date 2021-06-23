@@ -113,5 +113,42 @@ namespace BloodDonationSystemWebAPI.Controllers
                 return null;
             }
         }
+        [HttpPut]
+        public int UpdateDonorProfile(int id, [FromBody] DonorModel donor)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
+                using (SqlCommand cmd = new SqlCommand("spUpdateDonorProfile", connection))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                    cmd.Parameters.Add("@firstname", SqlDbType.VarChar).Value = donor.FirstName;
+                    cmd.Parameters.Add("@lastname", SqlDbType.VarChar).Value = donor.LastName;
+                    cmd.Parameters.Add("@dateofbirth", SqlDbType.Date).Value = donor.DateOfBirth;
+                    cmd.Parameters.Add("@address", SqlDbType.VarChar).Value = donor.Address;
+                    cmd.Parameters.Add("@contact", SqlDbType.VarChar).Value = donor.ContactNumber;
+                    cmd.Parameters.Add("@blood", SqlDbType.VarChar).Value = donor.BloodGroup;
+
+                    cmd.Parameters.Add("@email", SqlDbType.VarChar).Value = donor.Email;
+                    cmd.Parameters.Add("@password", SqlDbType.VarChar).Value = donor.Password;
+
+                    connection.Open();
+
+                   
+
+                    return (int)cmd.ExecuteNonQuery();
+
+
+                }
+
+            }
+            catch
+            {
+                return -1;
+
+            }
+        }
     }
 }

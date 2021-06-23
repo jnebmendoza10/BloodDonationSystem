@@ -14,14 +14,15 @@
 
                 <ListView x:Name="AppointmentListView"
                     Margin="5"
-                    SelectionMode="Single">
+                    SelectionMode="Single" ItemTapped="AppointmentListView_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <ViewCell Tapped="ViewCell_Tapped">
                                 <StackLayout Orientation="Vertical" >
                                     <Label Text="{Binding Location}" x:Name="lblLocation" FontSize="15" TextColor="Black" FontAttributes="Bold" />
                                     <Label Text="{Binding AppointmentDate}" x:Name="lblAppointmentDate"  TextColor="Black" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
-                                </StackLayout>
+                                    <Label Text="{Binding AppointmentId}" x:Name="lblAppointmentId"/>
+                            </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -17,6 +17,7 @@
                            TextColor="#CE0B06" />
                 <Label x:Name="lblDatePickerDonor" Text="Set an appointment date" TextColor="#000000"/>
                 <DatePicker x:Name="DatePicker_DonorDonation"/>
+                
                 <Picker x:Name="Locations" Title="Select a Blood Bank" TitleColor="#000000" TextColor="#000000">
                     <Picker.Items>
 
@@ -29,12 +30,18 @@
                     TextColor="White"
                     x:Name="BtnSubmitEditedAppointment"
                     Clicked="BtnSubmitEditedAppointment_Clicked"/>
-                    <Button Text="Cancel"
+                    <Button Text="Delete"
                         BackgroundColor="#CE0B06"
                         CornerRadius="25"                    
                         TextColor="White"
                         x:Name="BtnDeleteAppointment"
                         Clicked="BtnDeleteAppointment_Clicked"/>
+                    <Button Text="Cancel"
+                        BackgroundColor="#CE0B06"
+                        CornerRadius="25"                    
+                        TextColor="White"
+                        x:Name="BtnCancelAppointment"
+                        Clicked="BtnCancelAppointment_Clicked"/>
                 </StackLayout>
             </StackLayout>
         </Frame>

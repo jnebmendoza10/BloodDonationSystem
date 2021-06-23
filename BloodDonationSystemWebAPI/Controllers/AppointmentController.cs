@@ -15,7 +15,7 @@ namespace BloodDonationSystemWebAPI.Controllers
     {
        
         [HttpGet]
-        public IEnumerable<Appointment> GetAppointments()
+        public IEnumerable<Appointment> GetAppointments(int id)
         {
             List<Appointment> appointments = new List<Appointment>();
             try
@@ -24,16 +24,16 @@ namespace BloodDonationSystemWebAPI.Controllers
                 using (SqlCommand cmd = new SqlCommand("spGetAppointments", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
+                    cmd.Parameters.Add("@donorid", SqlDbType.Int).Value = id;
 
                     connection.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
                         Appointment appointment = new Appointment();
-                        //blood.BloodId = Convert.ToInt32(reader["BloodId"]);
-                        //blood.BloodType = reader["BloodType"].ToString();
-                        appointment.AppointmentId = Convert.ToInt32(reader["AppointmentId"]);
+
+                        appointment.AppointmentId = int.Parse(reader["AppointmentId"].ToString());
+                        appointment.DonorId = int.Parse(reader["DonorId"].ToString());
                         appointment.Location = reader["BloodBankName"].ToString();
                         appointment.AppointmentDate = DateTime.Parse(reader["AppointmentDate"].ToString());
 
@@ -91,10 +91,10 @@ namespace BloodDonationSystemWebAPI.Controllers
                 {
 
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@appointmentid", SqlDbType.Int).Value = id;
                     cmd.Parameters.Add("@bloodbank", SqlDbType.VarChar).Value = appointment.Location;
                     cmd.Parameters.Add("@appointmentdate", SqlDbType.Date).Value = appointment.AppointmentDate;
+                    
 
                     connection.Open();
 
@@ -122,12 +122,41 @@ namespace BloodDonationSystemWebAPI.Controllers
 
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@appointmentid", SqlDbType.Int).Value = id;
+                    cmd.Parameters.Add("@appointmentid", SqlDbType.DateTime).Value = id;
                    
 
                     connection.Open();
 
                     return (int)cmd.ExecuteNonQuery();
+
+
+                }
+
+            }
+            catch
+            {
+                return -1;
+
+            }
+        }
+
+        [HttpGet]
+        public int GetAppointmentId(DateTime appointment)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
+                using (SqlCommand cmd = new SqlCommand("spGetAppointmentId", connection))
+                {
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@appointmentdate", SqlDbType.DateTime).Value = appointment;
+
+
+                    connection.Open();
+
+                    return (int)cmd.ExecuteScalar();
 
 
                 }

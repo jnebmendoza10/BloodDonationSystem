@@ -5,11 +5,81 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="BloodDonationApp.Views.About">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+    <ScrollView>
+        <StackLayout Margin="20">
+            <Label Text="Before blood donation:"
+                   TextColor="Black"
+                   FontSize="Large"
+                   FontAttributes="Bold"/>
+            <Label Text="1. Get plenty of sleep the night before you plan to donate."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="2. Eat a healthy meal before your donation. Avoid fatty foods, such as a hamburger, fries or ice cream."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="3. Drink plenty of water before the donation."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="4. Check to see if any medications you are taking or recently took would prevent you from donating. For example, if you are a platelet donor, you must not take aspirin for two days prior to donating. Talk to your doctor before discontinuing any medications."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="5. Wear a shirt with sleeves that can be rolled up."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+
+            <Label Text="During blood donation:"
+                   TextColor="Black"
+                   FontSize="Large"
+                   FontAttributes="Bold"/>
+            <Label Text=" You lie or sit in a reclining chair with your arm extended on an armrest. If you have a preference for which arm or vein is used, share it. A blood pressure cuff or tourniquet is placed around your upper arm to fill your veins with more blood. This makes the veins easier to see and easier to insert the needle into, and also helps fill the blood bag more quickly. Then the skin on the inside of your elbow is cleaned."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="A new, sterile needle is inserted into a vein in your arm. This needle is attached to a thin, plastic tube and a blood bag. Once the needle is in place, you tighten your fist several times to help the blood flow from the vein. Blood initially is collected into tubes for testing. When these have been collected, blood is allowed to fill the bag, about a pint (about half a liter). The needle is usually in place about 10 minutes. When complete, the needle is removed, a small bandage is placed on the needle site and a dressing is wrapped around your arm."
+                   TextColor="Black"
+                   FontSize="Medium"
+                   />
+            <Label Text="Another method of donating blood becoming increasingly common is apheresis. During apheresis, you are hooked up to a machine that can collect and separate blood components, such as red cells, plasma and platelets. This process allows more of a single component to be collected. It takes longer than standard blood donation — typically up to two hours."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+
+            <Label Text="After blood donation:"
+                   TextColor="Black"
+                   FontSize="Large"
+                   FontAttributes="Bold"/>
+            <Label Text="1. Drink extra fluids."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="2. Avoid strenuous physical activity or heavy lifting for about five hours."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="3. If you feel lightheaded, lie down with your feet up until the feeling passes."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="4. Keep your bandage on and dry for the next five hours."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="5. If you have bleeding after removing the bandage, put pressure on the site and raise your arm until the bleeding stops."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="6. If bruising occurs, apply a cold pack to the area periodically during the first 24 hours."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="7. Consider adding iron-rich foods to your diet to replace the iron lost with blood donation."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+
+            <Label Text="Contact the blood donor center if you:"
+                   TextColor="Black"
+                   FontSize="Large"
+                   FontAttributes="Bold"/>
+            <Label Text="1. Forgot to report any important health information."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+            <Label Text="1. Have signs and symptoms of an illness, such as a fever, within several days after your blood donation."
+                   TextColor="Black"
+                   FontSize="Medium"/>
+
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>
