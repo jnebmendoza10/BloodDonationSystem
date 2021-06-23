@@ -40,14 +40,18 @@ namespace BloodDonationApp.Views
 
             var response = await ApiServices.AddAppointment(userId, Locations.SelectedItem.ToString(), DatePicker_DonorDonation.Date + TimePicker_Donation.Time);
 
-            if (response)
+            if (response == 1)
             {
                 await DisplayAlert("Success", "Your appointment has been set", "Ok");
                
             }
-            else
+            else if (response == -69)
             {
-                await DisplayAlert("Error", "Please try again", "Ok");
+                await DisplayAlert("Error", "You can only have one appointment on a given date", "Ok");
+            }
+            else if (response == -100)
+            {
+                await DisplayAlert("Error", "Connection problems", "Ok");
             }
            
             

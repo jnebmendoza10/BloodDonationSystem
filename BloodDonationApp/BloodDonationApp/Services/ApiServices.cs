@@ -91,7 +91,7 @@ namespace BloodDonationApp.Services
             return appointments;
         }
 
-        public static async Task<bool> AddAppointment(int userId, string location, DateTime appointmentDate)
+        public static async Task<int> AddAppointment(int userId, string location, DateTime appointmentDate)
         {
             var appointment = new AppointmentModel()
             {
@@ -103,14 +103,16 @@ namespace BloodDonationApp.Services
             var json = JsonConvert.SerializeObject(appointment);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await httpClient.PostAsync(Constant.ApiUrl + "api/Appointment/SetAppointment", content);
+            var resultJson = response.Content.ReadAsStringAsync().Result;
+            var resultObject = JsonConvert.DeserializeObject(resultJson);
             
             if (response.IsSuccessStatusCode)
             {
-                return true;
+                return int.Parse(resultObject.ToString());
             }
             else
             {
-                return false;
+                return -100;
             }
 
         }

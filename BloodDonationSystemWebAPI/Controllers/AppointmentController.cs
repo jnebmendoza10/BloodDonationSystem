@@ -13,14 +13,14 @@ namespace BloodDonationSystemWebAPI.Controllers
 {
     public class AppointmentController : ApiController
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["BloodDonation"].ConnectionString;
+       
         [HttpGet]
         public IEnumerable<Appointment> GetAppointments()
         {
             List<Appointment> appointments = new List<Appointment>();
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
                 using (SqlCommand cmd = new SqlCommand("spGetAppointments", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -56,7 +56,7 @@ namespace BloodDonationSystemWebAPI.Controllers
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
                 using (SqlCommand cmd = new SqlCommand("spSetAppointment", connection))
                 {
 
@@ -68,7 +68,7 @@ namespace BloodDonationSystemWebAPI.Controllers
 
                     connection.Open();
 
-                    return (int)cmd.ExecuteNonQuery();
+                    return (int)cmd.ExecuteScalar();
 
 
                 }
@@ -86,7 +86,7 @@ namespace BloodDonationSystemWebAPI.Controllers
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
                 using (SqlCommand cmd = new SqlCommand("spUpdateAppointment", connection))
                 {
 
@@ -116,7 +116,7 @@ namespace BloodDonationSystemWebAPI.Controllers
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
                 using (SqlCommand cmd = new SqlCommand("spDeleteAppointment", connection))
                 {
 

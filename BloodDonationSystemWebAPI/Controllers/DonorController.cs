@@ -12,13 +12,13 @@ namespace BloodDonationSystemWebAPI.Controllers
 {
     public class DonorController : ApiController
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["BloodDonation"].ConnectionString;
+        
         [HttpPost]
         public int RegisterDonor([FromBody]DonorModel donor)
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
                 using (SqlCommand cmd = new SqlCommand("spRegisterDonor", connection))
                 {
                     
@@ -52,7 +52,7 @@ namespace BloodDonationSystemWebAPI.Controllers
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
                 using (SqlCommand cmd = new SqlCommand("spLoginDonor", connection))
                 {
 
@@ -81,7 +81,7 @@ namespace BloodDonationSystemWebAPI.Controllers
             DonorModel donor = new DonorModel();
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
                 using (SqlCommand cmd = new SqlCommand("spGetDonorById", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;

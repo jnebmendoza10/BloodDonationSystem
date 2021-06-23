@@ -13,14 +13,14 @@ namespace BloodDonationSystemWebAPI.Controllers
 {
     public class LocationController : ApiController
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["BloodDonation"].ConnectionString;
+        
         [HttpGet]
         public IEnumerable<Location> GetLocations()
         {
             List<Location> locations = new List<Location>();
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString.SqlConnetionString))
                 using (SqlCommand cmd = new SqlCommand("spGetLocations", connection))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
