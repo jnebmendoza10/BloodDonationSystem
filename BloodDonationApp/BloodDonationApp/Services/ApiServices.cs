@@ -46,6 +46,7 @@ namespace BloodDonationApp.Services
         {
             var donor = new DonorModel()
             {
+                DonorId = userId,
                 FirstName = firstname,
                 LastName = lastname,
                 DateOfBirth = dateOfBirth,
@@ -57,12 +58,14 @@ namespace BloodDonationApp.Services
             };
             var httpClient = new HttpClient();
 
-            var json = JsonConvert.SerializeObject(donor);
+            var json = JsonConvert.SerializeObject(donor, Formatting.Indented);
             HttpContent content = new StringContent(json);
 
             content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await httpClient.PutAsync(Constant.ApiUrl + "Donor/UpdateDonorProfile/" + userId, content);
+            var response = await httpClient.PutAsync(Constant.ApiUrl + "api/Donor/UpdateDonorProfile/" + userId, content);
+            var resultJson = response.Content.ReadAsStringAsync().Result;
+            var resultObject = JsonConvert.DeserializeObject(resultJson);
             if (response.IsSuccessStatusCode)
             {
                 return true;
@@ -148,20 +151,24 @@ namespace BloodDonationApp.Services
 
         }
 
-        public static async Task<bool> PutAppointmentAsync(int id, DateTime appointmentDate, string location)
+        public static async Task<bool> PutAppointmentAsync(int id, int donorId, DateTime appointmentDate, string location)
         {
+            
             var appointment = new AppointmentModel()
             {
+                AppointmentId = id,
+                DonorId = donorId,
                 AppointmentDate = appointmentDate,
                 Location = location
             };
             var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(appointment);
             HttpContent content = new StringContent(json);
-
             content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-
-            var response = await httpClient.PutAsync(Constant.ApiUrl + "Appointment/UpdateAppointment/" + id, content);
+            
+            var response = await httpClient.PutAsync(Constant.ApiUrl + "api/Appointment/UpdateAppointment/" + id, content);
+            //var resultJson = response.Content.ReadAsStringAsync().Result;
+            //var resultObject = JsonConvert.DeserializeObject(resultJson);
             if (response.IsSuccessStatusCode)
             {
                 return true;
@@ -172,10 +179,10 @@ namespace BloodDonationApp.Services
             }
         }
 
-        public static async Task<bool> DeleteAppointmentAsync(int userId)
+        public static async Task<bool> DeleteAppointmentAsync(int appointmentId)
         {
             var httpClient = new HttpClient();
-            var response = await httpClient.DeleteAsync(Constant.ApiUrl + "Appointment/DeleteAppointment/" + userId);
+            var response = await httpClient.DeleteAsync(Constant.ApiUrl + "api/Appointment/DeleteAppointment/" + appointmentId);
             if (response.IsSuccessStatusCode)
             {
                 return true;
@@ -196,23 +203,6 @@ namespace BloodDonationApp.Services
             return locations;
         }
 
-        public static async Task<int> GetAppointmentId(DateTime appointment)
-        {
-            var donorAppointment = new AppointmentModel
-            {
-                AppointmentDate = appointment
-            };
-
-            var httpclient = new HttpClient();
-            var json = JsonConvert.SerializeObject(donorAppointment);
-            
-            var response = await httpclient.GetAsync(Constant.ApiUrl + "api/Appointment/GetAppointmentId/" + appointment);
-            var jsonData = await httpclient.GetStringAsync(Constant.ApiUrl + "api/Appointment/GetAppointmentId/" + appointment);
-            var appointmentId = JsonConvert.DeserializeObject<int>(jsonData);
-
-            return appointmentId;
-            
-            
-        }
+        
     }
 }

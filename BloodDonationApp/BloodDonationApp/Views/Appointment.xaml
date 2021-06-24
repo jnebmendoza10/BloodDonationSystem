@@ -20,7 +20,7 @@
                             <ViewCell Tapped="ViewCell_Tapped">
                                 <StackLayout Orientation="Vertical" >
                                     <Label Text="{Binding Location}" x:Name="lblLocation" FontSize="15" TextColor="Black" FontAttributes="Bold" />
-                                    <Label Text="{Binding AppointmentDate}" x:Name="lblAppointmentDate"  TextColor="Black" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
+                                    <Label Text="{Binding AppointmentDate, StringFormat='{0:d}'}" x:Name="lblAppointmentDate"  TextColor="Black" FontAttributes="Bold" HorizontalOptions="EndAndExpand"/>
                                     <Label Text="{Binding AppointmentId}" x:Name="lblAppointmentId"/>
                             </StackLayout>
                             </ViewCell>
